@@ -212,6 +212,7 @@
 				TargetAttributes = {
 					0D642F531DE83011007E563F = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = H5PY75XDDR;
 						ProvisioningStyle = Automatic;
 					};
 					0D642F6C1DE83012007E563F = {
@@ -430,7 +431,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H5PY75XDDR;
 				INFOPLIST_FILE = SocketClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beidouht.SocketClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,7 +444,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H5PY75XDDR;
 				INFOPLIST_FILE = SocketClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beidouht.SocketClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -513,6 +518,7 @@
 				0D642F831DE83012007E563F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0D642F841DE83012007E563F /* Build configuration list for PBXNativeTarget "SocketClientTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				0D642F861DE83012007E563F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0D642F871DE83012007E563F /* Build configuration list for PBXNativeTarget "SocketClientUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +536,7 @@
 				0D642F891DE83012007E563F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
