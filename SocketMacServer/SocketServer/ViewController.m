@@ -9,14 +9,14 @@
 #import "ViewController.h"
 #import "GCDAsyncSocket.h"
 
-@interface ViewController()
+@interface ViewController() <GCDAsyncSocketDelegate>
 @property (weak) IBOutlet NSTextField *host;
 @property (weak) IBOutlet NSTextField *port;
 @property (weak) IBOutlet NSTextView *statusTips;
 @property (weak) IBOutlet NSButton *lisBtn;
 @property (weak) IBOutlet NSTextField *sendText;
 
-@property (nonatomic) GCDAsyncSocket *socket;
+@property (nonatomic) GCDAsyncSocket *socketListen;
 @property (nonatomic) GCDAsyncSocket *serverSocket;
 
 @end
@@ -28,11 +28,11 @@
 
     // Do any additional setup after loading the view.
     
-    _socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    _host.stringValue = @"nil";
-    _port.stringValue = @"8808";
-    _statusTips.string = @"socket is ready";
-    _sendText.stringValue = @"how are you ?";
+    self.socketListen = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    self.host.stringValue = @"localhost";
+    self.port.stringValue = @"8808";
+    self.statusTips.string = @"socket is ready";
+    self.sendText.stringValue = @"how are you ?";
 }
 
 
@@ -41,22 +41,31 @@
 
     // Update the view, if already loaded.
 }
-- (IBAction)listennnigOrStop:(NSButton *)sender {
+- (IBAction)Startlistennnig:(NSButton *)sender {
     
     NSError *error = nil;
     BOOL result;
+    //self.socketListen作为侦听使用
+    result = [self.socketListen acceptOnInterface:nil port:[self.port.stringValue integerValue] error:&error];
     
-    result = [self.socket acceptOnInterface:nil port:[self.port.stringValue integerValue] error:&error];
-    
-    self.statusTips.string = [NSString stringWithFormat:@"result:%d, error:%@",result,[error localizedDescription]];
     if (result) {
         self.statusTips.string = @"start listenning...";
+    }else {
+        self.statusTips.string = [NSString stringWithFormat:@"error:%@",[error localizedDescription]];
     }
+}
+- (IBAction)stopListenning:(NSButton *)sender {
+    
+    //仅停止侦听,self.serverSocket并没有断开还可以发送数据。
+    [self.socketListen disconnect];
 }
 - (IBAction)disconnect:(NSButton *)sender {
     
-    //断开连接需要使用newSocket断开，
-    [self.serverSocket disconnect];
+    //仅断开针对客户端连接的服务端socket，侦听还在继续（多个客户端连接可以有多个服务端socket,但一般只有一个侦听socket）
+    if (self.serverSocket) {
+        [self.serverSocket disconnect];
+    }
+    
 }
 - (IBAction)sendData:(NSButton *)sender {
     

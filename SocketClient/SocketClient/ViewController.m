@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "GCDAsyncSocket.h"
 
-@interface ViewController ()
+@interface ViewController () <GCDAsyncSocketDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *host;
 @property (weak, nonatomic) IBOutlet UITextField *port;
@@ -27,10 +27,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    _host.text = @"192.168.40.142";
+    
+    _host.text = @"192.168.1.100";
     _port.text = @"8808";
-    _sendText.text = @"hello world!";
+    _sendText.text = @"hi Sawyer";
 }
 
 
@@ -43,8 +43,17 @@
     NSError *error = nil;
     BOOL result;
     
+    if (!_socket) {
+        _socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    }
+    
     result = [self.socket connectToHost:self.host.text onPort:[self.port.text integerValue] withTimeout:-1 error:&error];
-    self.errorText.text = [NSString stringWithFormat:@"result:%d, error:%@",result,[error localizedDescription]];
+    if (result) {
+        self.errorText.text = [NSString stringWithFormat:@"start connect to %@...",self.host];
+    }else {
+        self.errorText.text = [NSString stringWithFormat:@"error:%@",[error localizedDescription]];
+    }
+
 }
 - (IBAction)disconect:(id)sender {
     
