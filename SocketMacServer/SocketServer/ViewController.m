@@ -46,7 +46,7 @@
     NSError *error = nil;
     BOOL result;
     //self.socketListen作为侦听使用
-    result = [self.socketListen acceptOnInterface:nil port:[self.port.stringValue integerValue] error:&error];
+    result = [self.socketListen acceptOnInterface:self.host.stringValue port:[self.port.stringValue integerValue] error:&error];
     
     if (result) {
         self.statusTips.string = @"start listenning...";
