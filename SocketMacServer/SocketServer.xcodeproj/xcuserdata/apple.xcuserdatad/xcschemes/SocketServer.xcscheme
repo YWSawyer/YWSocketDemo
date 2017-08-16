@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D642F531DE83011007E563F"
-               BuildableName = "SocketClient.app"
-               BlueprintName = "SocketClient"
-               ReferencedContainer = "container:SocketClient.xcodeproj">
+               BlueprintIdentifier = "0D9AA13F1DEC2D1000033ACB"
+               BuildableName = "SocketServer.app"
+               BlueprintName = "SocketServer"
+               ReferencedContainer = "container:SocketServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D642F6C1DE83012007E563F"
-               BuildableName = "SocketClientTests.xctest"
-               BlueprintName = "SocketClientTests"
-               ReferencedContainer = "container:SocketClient.xcodeproj">
+               BlueprintIdentifier = "0D9AA1551DEC2D1100033ACB"
+               BuildableName = "SocketServerTests.xctest"
+               BlueprintName = "SocketServerTests"
+               ReferencedContainer = "container:SocketServer.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D642F771DE83012007E563F"
-               BuildableName = "SocketClientUITests.xctest"
-               BlueprintName = "SocketClientUITests"
-               ReferencedContainer = "container:SocketClient.xcodeproj">
+               BlueprintIdentifier = "0D9AA1601DEC2D1100033ACB"
+               BuildableName = "SocketServerUITests.xctest"
+               BlueprintName = "SocketServerUITests"
+               ReferencedContainer = "container:SocketServer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D642F531DE83011007E563F"
-            BuildableName = "SocketClient.app"
-            BlueprintName = "SocketClient"
-            ReferencedContainer = "container:SocketClient.xcodeproj">
+            BlueprintIdentifier = "0D9AA13F1DEC2D1000033ACB"
+            BuildableName = "SocketServer.app"
+            BlueprintName = "SocketServer"
+            ReferencedContainer = "container:SocketServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D642F531DE83011007E563F"
-            BuildableName = "SocketClient.app"
-            BlueprintName = "SocketClient"
-            ReferencedContainer = "container:SocketClient.xcodeproj">
+            BlueprintIdentifier = "0D9AA13F1DEC2D1000033ACB"
+            BuildableName = "SocketServer.app"
+            BlueprintName = "SocketServer"
+            ReferencedContainer = "container:SocketServer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0D642F531DE83011007E563F"
-            BuildableName = "SocketClient.app"
-            BlueprintName = "SocketClient"
-            ReferencedContainer = "container:SocketClient.xcodeproj">
+            BlueprintIdentifier = "0D9AA13F1DEC2D1000033ACB"
+            BuildableName = "SocketServer.app"
+            BlueprintName = "SocketServer"
+            ReferencedContainer = "container:SocketServer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

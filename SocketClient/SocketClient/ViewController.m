@@ -14,9 +14,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *host;
 @property (weak, nonatomic) IBOutlet UITextField *port;
 @property (weak, nonatomic) IBOutlet UITextView *errorText;
+@property (weak, nonatomic) IBOutlet UIButton *manualBtn;
 
+@property (weak, nonatomic) IBOutlet UISwitch *isManual;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (weak, nonatomic) IBOutlet UITextField *sendText;
+@property (weak, nonatomic) IBOutlet UISwitch *readToSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *readToStr;
+
 @property (nonatomic) GCDAsyncSocket *socket;
 
 @end
@@ -28,9 +33,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    _host.text = @"192.168.1.100";
+    _host.text = @"localhost";
     _port.text = @"8808";
     _sendText.text = @"hi Sawyer";
+    [self.isManual setOn:YES];
+    [self.readToSwitch setOn:NO];
 }
 
 
@@ -68,11 +75,27 @@
     
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.errorText resignFirstResponder];
+    [self.sendText resignFirstResponder];
+    [self.host resignFirstResponder];
+    [self.port resignFirstResponder];
+}
+
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     
     self.errorText.text = [NSString stringWithFormat:@"didConnectToHost:%@",host];
+    //使能后台socket
+    [self.socket performBlock:^{
+        BOOL enable = [self.socket enableBackgroundingOnSocket];
+        NSLog(@"enableBackgroundingOnSocket is :%@",enable?@"true":@"false");
+    }];
+    
     //建立连接后，开始无超时的读取新Socket发送的数据，如果没有数据一直等待，如果有数据didReadData回调被吊起。（不主动读取socket数据是读不到任何数据的）
-    [self.socket readDataWithTimeout:-1 tag:0];
+    if (!self.isManual.isOn) {
+         [self.socket readDataWithTimeout:-1 tag:0];
+    }
      NSLog(@"%@",self.errorText.text);
 }
 
@@ -99,12 +122,30 @@
     NSString *receiveText = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     self.errorText.text = [NSString stringWithFormat:@"[%@]%@: %@",time,sock.connectedHost,receiveText];
     //读取完newSocket发送的数据后，需要再次主动读取数据，否则didReadData不会再次调起。
-    [self.socket readDataWithTimeout:-1 tag:0];
+    if (!self.isManual.isOn) {
+        [self.socket readDataWithTimeout:-1 tag:0];
+    }
     NSLog(@"%@",self.errorText.text);
 }
 
+- (IBAction)manualReadAction:(UIButton *)sender {
+    if (self.readToSwitch.isOn) {
+        NSString *abc = self.readToStr.text;
+        NSData *ddd = [abc dataUsingEncoding:NSUTF8StringEncoding];
+        [self.socket readDataToData:ddd withTimeout:-1 tag:99];
+    }else{
+        [self.socket readDataWithTimeout:-1 tag:99];
+    }
+    
+}
 
 
+- (IBAction)manualSwitchAction:(UISwitch *)sender {
+    
+}
+- (IBAction)readToSwitchAction:(UISwitch *)sender {
+    
+}
 
 
 @end
